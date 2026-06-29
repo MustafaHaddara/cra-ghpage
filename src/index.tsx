@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
@@ -35,19 +35,26 @@ const App = () => {
 
 const Name = () => {
   const { name } = useParams();
-  return (
-    <div>
-      {name} <Link to={"/cra-ghpage"}>Home</Link>
-    </div>
-  );
-};
+  const [predictedAge, setPredictedAge] = useState<number | null>(null);
 
-const Pet = () => {
-  const { name, pet } = useParams();
+  useEffect(() => {
+    fetch(`https://api.agify.io?name=${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setPredictedAge(data.age);
+      });
+  }, [name]);
+
   return (
     <div>
-      {name} has a pet {pet}
-      <Link to={`/cra-ghpage/name/${name}`}>Back to person</Link>
+      {predictedAge === null ? (
+        <p>Loading...</p>
+      ) : (
+        <p>
+          {name} is probably {predictedAge} years old.
+        </p>
+      )}
+      <Link to={`/cra-ghpage/`}>Back to home</Link>
     </div>
   );
 };
@@ -60,10 +67,6 @@ const router = createBrowserRouter([
   {
     path: "/cra-ghpage/name/:name",
     element: <Name />,
-  },
-  {
-    path: "/cra-ghpage/name/:name/pet/:pet",
-    element: <Pet />,
   },
 ]);
 
