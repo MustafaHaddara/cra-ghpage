@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/cra-ghpage/static/js/main.937b47ef.js",
+    "main.js": "/cra-ghpage/static/js/main.fec3e065.js",
     "index.html": "/cra-ghpage/index.html",
-    "main.937b47ef.js.map": "/cra-ghpage/static/js/main.937b47ef.js.map"
+    "main.fec3e065.js.map": "/cra-ghpage/static/js/main.fec3e065.js.map"
   },
   "entrypoints": [
-    "static/js/main.937b47ef.js"
+    "static/js/main.fec3e065.js"
   ]
 }
